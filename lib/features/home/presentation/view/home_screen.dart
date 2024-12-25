@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xtravel/common/injection_container.dart';
 import 'package:xtravel/features/home/presentation/bloc/home_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,14 +13,34 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final HomeBloc homeBloc = HomeBloc(homeRepository: locator());
 
-  final HomeBloc homeBloc = HomeBloc();
+  @override
+  void initState() {
+    homeBloc.add(UpdateHomeEvent());
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.red[400],
-      body: const Column(children: [Text('Home screen')],),
+      body: SafeArea(
+        child: Column(
+          children: [
+            const Text('Home screen'),
+            const SizedBox(
+              height: 32,
+            ),
+            OutlinedButton(
+                onPressed: () {
+                  homeBloc.add(UpdateHomeEvent());
+                },
+                child: const Text("Load"))
+          ],
+        ),
+      ),
     );
   }
 }

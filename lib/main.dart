@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:xtravel/common/injection_container.dart';
 import 'package:xtravel/constants/router.dart';
+import 'package:xtravel/core/providers/network_client_provider.dart';
 
-void main() {
+void main() async {
+  initLocator();
+
+  await Future.wait([NetworkClientProvider.init()]);
+
   runApp(const XTravelApp());
 }
 
@@ -11,7 +17,7 @@ class XTravelApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-       routerConfig: AppRouter.configs,
+      routerConfig: AppRouter.configs,
     );
   }
 }
