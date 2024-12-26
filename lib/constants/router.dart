@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:xtravel/features/auth/registration/presentation/view/view.dart';
+import 'package:xtravel/features/countryInfo/presentation/view/view.dart';
 import 'package:xtravel/features/favorites/presentation/view/view.dart';
 import 'package:xtravel/features/home/presentation/view/home_screen.dart';
+import 'package:xtravel/features/home/presentation/view/home_screen_builder.dart';
 import 'package:xtravel/features/profile/presentation/view/profile_screen.dart';
 import 'package:xtravel/features/root/app_root.dart';
 import 'package:xtravel/features/search/presentation/view/view.dart';
@@ -13,7 +15,7 @@ class AppRouter {
 
   static final configs = GoRouter(
       navigatorKey: _navigatorKey,
-      initialLocation: HomeScreen.path,
+      initialLocation: HomeScreenBuilder.path,
       routes: <RouteBase>[
         StatefulShellRoute.indexedStack(
             builder: (context, state, navigationShell) =>
@@ -22,9 +24,9 @@ class AppRouter {
               StatefulShellBranch(
                 routes: [
                   GoRoute(
-                    path: HomeScreen.path,
-                    name: HomeScreen.name,
-                    builder: (context, state) => const HomeScreen(),
+                    path: HomeScreenBuilder.path,
+                    name: HomeScreenBuilder.name,
+                    builder: (context, state) => const HomeScreenBuilder(),
                   ),
                 ],
               ),
@@ -60,6 +62,14 @@ class AppRouter {
           path: RegistrationScreen.path,
           name: RegistrationScreen.name,
           builder: (context, state) => const RegistrationScreen(),
+        ),
+        GoRoute(
+          path: CountryInfoScreenBuilder.path,
+          name: CountryInfoScreenBuilder.name,
+          builder: (context, state) => CountryInfoScreenBuilder(
+            countryId: state.pathParameters['countryId']!,
+            mainImageUrl: state.pathParameters['mainImageUrl']!,
+          ),
         )
       ]);
 }

@@ -1,46 +1,69 @@
 import 'package:flutter/material.dart';
-import 'package:xtravel/common/injection_container.dart';
-import 'package:xtravel/features/home/presentation/bloc/home_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
+import 'package:sliver_tools/sliver_tools.dart';
+import 'package:xtravel/features/home/presentation/bloc/countries/home_countries_bloc.dart';
+import 'package:xtravel/features/home/presentation/widgets/list_of_countries.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-
-  static const String path = '/';
-  static const String name = 'home';
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  final HomeBloc homeBloc = HomeBloc(homeRepository: locator());
-
-  @override
-  void initState() {
-    homeBloc.add(UpdateHomeEvent());
-
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.red[400],
-      body: SafeArea(
-        child: Column(
-          children: [
-            const Text('Home screen'),
-            const SizedBox(
-              height: 32,
+    return CustomScrollView(
+      scrollDirection: Axis.vertical,
+      physics: const AlwaysScrollableScrollPhysics(),
+      slivers: [
+        SliverPinnedHeader(
+          child: Container(
+            height: 60,
+            decoration: const BoxDecoration(color: Colors.white),
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  Text(
+                    "XTravel",
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                ],
+              ),
             ),
-            OutlinedButton(
-                onPressed: () {
-                  homeBloc.add(UpdateHomeEvent());
-                },
-                child: const Text("Load"))
-          ],
+          ),
         ),
-      ),
+        const ListOfCountries(),
+        SliverToBoxAdapter(
+          child: Row(
+            children: [
+              TextButton(
+                  onPressed: () {
+                    context
+                        .read<HomeCountriesBloc>()
+                        .add(HomeCountriesUpdateEvent());
+                  },
+                  child: const Text("Load"))
+            ],
+          ),
+        ),
+        SliverList.builder(
+            itemCount: 100,
+            itemBuilder: (context, index) => Container(
+                  color: Colors.amber,
+                  child: Row(
+                    children: [
+                      const Gap(20),
+                      Text(
+                        'Index: $index',
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.normal),
+                      )
+                    ],
+                  ),
+                ))
+      ],
     );
   }
 }

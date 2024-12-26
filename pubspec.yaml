@@ -60,6 +60,9 @@ dependencies:
   talker_flutter: ^4.5.3
   talker_dio_logger: ^4.5.3
   talker_bloc_logger: ^4.5.3
+  skeletonizer: ^1.4.2
+  sliver_tools: ^0.2.12
+  gap: ^3.0.1
 
 dev_dependencies:
   flutter_test:

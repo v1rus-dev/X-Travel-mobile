@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:xtravel/constants/size.dart';
 import 'package:xtravel/constants/router.dart';
 import 'package:xtravel/features/favorites/presentation/view/view.dart';
-import 'package:xtravel/features/home/presentation/view/home_screen.dart';
+import 'package:xtravel/features/home/presentation/view/home_screen_builder.dart';
 import 'package:xtravel/features/profile/presentation/view/view.dart';
 import 'package:xtravel/features/search/presentation/view/view.dart';
 
@@ -36,7 +36,7 @@ class AppBottomNavigation extends StatelessWidget {
               title: 'Home',
               onTap: () {
                 debugPrint('onTapHome: ${state.matchedLocation}');
-                AppRouter.configs.pushNamed(HomeScreen.name);
+                AppRouter.configs.pushNamed(HomeScreenBuilder.name);
               },
             ),
             AppBottomNavigationButton(
