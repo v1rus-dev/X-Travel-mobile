@@ -3,9 +3,11 @@ import 'package:go_router/go_router.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class AppRoot extends StatelessWidget {
-  const AppRoot({super.key, required this.navigationshell});
+  AppRoot({super.key, required this.navigationshell});
 
   final StatefulNavigationShell navigationshell;
+
+  Color bottomNavigationButtonColor = const Color(0xFF0651DB);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,7 @@ class AppRoot extends StatelessWidget {
         tabBackgroundGradient: LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
-          colors: [Colors.lightBlue[100]!, Colors.cyan],
+          colors: [bottomNavigationButtonColor, bottomNavigationButtonColor],
         ),
         gap: 8,
         tabBorderRadius: 15,
@@ -32,14 +34,7 @@ class AppRoot extends StatelessWidget {
             icon: Icons.home,
             text: 'Home',
           ),
-          GButton(
-            icon: Icons.search,
-            text: 'Search',
-          ),
-          GButton(
-            icon: Icons.favorite,
-            text: 'Favorite',
-          ),
+          // GButton(icon: ),
           GButton(
             icon: Icons.person,
             text: 'Profile',
