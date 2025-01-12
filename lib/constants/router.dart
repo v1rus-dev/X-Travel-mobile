@@ -2,40 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:xtravel/features/auth/registration/presentation/view/view.dart';
 import 'package:xtravel/features/countryInfo/presentation/view/view.dart';
-import 'package:xtravel/features/favorites/presentation/view/view.dart';
 import 'package:xtravel/features/home/presentation/view/home_screen.dart';
-import 'package:xtravel/features/home/presentation/view/home_screen_builder.dart';
-import 'package:xtravel/features/profile/presentation/view/profile_screen.dart';
+import 'package:xtravel/features/profile/presentation/view/profile_wrapper_screen.dart';
 import 'package:xtravel/features/root/app_root.dart';
-import 'package:xtravel/features/search/presentation/view/view.dart';
+
+import '../features/favorites/presentation/view/favorites_screen.dart';
 
 class AppRouter {
   static final _navigatorKey = GlobalKey<NavigatorState>();
-  static final _shellNavigatorKey = GlobalKey<NavigatorState>();
+  static final _shellNavigatorKey = GlobalKey<StatefulNavigationShellState>();
 
   static final configs = GoRouter(
       navigatorKey: _navigatorKey,
-      initialLocation: HomeScreenBuilder.path,
+      initialLocation: HomeScreen.path,
       routes: <RouteBase>[
         StatefulShellRoute.indexedStack(
+            key: _shellNavigatorKey,
             builder: (context, state, navigationShell) =>
                 AppRoot(navigationshell: navigationShell),
             branches: [
               StatefulShellBranch(
                 routes: [
                   GoRoute(
-                    path: HomeScreenBuilder.path,
-                    name: HomeScreenBuilder.name,
-                    builder: (context, state) => const HomeScreenBuilder(),
-                  ),
-                ],
-              ),
-              StatefulShellBranch(
-                routes: [
-                  GoRoute(
-                    path: SearchScreen.path,
-                    name: SearchScreen.name,
-                    builder: (context, state) => const SearchScreen(),
+                    path: HomeScreen.path,
+                    name: HomeScreen.name,
+                    builder: (context, state) => const HomeScreen(),
                   ),
                 ],
               ),
@@ -51,9 +42,9 @@ class AppRouter {
               StatefulShellBranch(
                 routes: [
                   GoRoute(
-                    path: ProfileScreen.path,
-                    name: ProfileScreen.name,
-                    builder: (context, state) => const ProfileScreen(),
+                    path: ProfileWrapperScreen.path,
+                    name: ProfileWrapperScreen.name,
+                    builder: (context, state) => const ProfileWrapperScreen(),
                   )
                 ],
               )

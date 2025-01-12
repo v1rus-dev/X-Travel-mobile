@@ -1,28 +1,26 @@
 class CountryInfoDto {
   final int countryId;
-  final String countryNameRu;
-  final String countryNameEn;
+  final String countryName;
   final String folderName;
   final String imageUrl;
+  String? shortName;
 
-  CountryInfoDto({
-    required this.countryId,
-    required this.countryNameRu,
-    required this.countryNameEn,
-    required this.folderName,
-    required this.imageUrl,
-  });
+  CountryInfoDto(
+      {required this.countryId,
+      required this.countryName,
+      required this.folderName,
+      required this.imageUrl,
+      required this.shortName});
 
   static CountryInfoDto fromJson(Map<String, dynamic> json) => CountryInfoDto(
-        countryId: json['countryId'],
-        countryNameRu: json['countryNameRu'],
-        countryNameEn: json['countryNameEn'],
-        folderName: json['folderName'],
-        imageUrl: json['imageUrl'],
-      );
+      countryId: json['countryId'],
+      countryName: json['countryName'],
+      folderName: json['folderName'],
+      imageUrl: json['imageUrl'],
+      shortName: json['shortName']);
 
   @override
   String toString() {
-    return 'CountryInfoDto{countryId=$countryId, countryNameRu=$countryNameRu, countryNameEn=$countryNameEn, folderName=$folderName, imageUrl=$imageUrl}';
+    return 'CountryInfoDto{countryId=$countryId, countryName=$countryName, folderName=$folderName, imageUrl=$imageUrl, shortName=$shortName}';
   }
 }

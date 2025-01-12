@@ -4,8 +4,7 @@ import 'package:xtravel/features/home/domain/entity/country.dart';
 class CountryMapper {
   static Country mapToEntity(CountryInfoDto dto) => Country(
         countryId: dto.countryId,
-        countryNameRu: dto.countryNameRu,
-        counryNameEn: dto.countryNameEn,
+        countryName: dto.countryName,
         folderName: dto.folderName,
         imageUrl: dto.imageUrl,
       );

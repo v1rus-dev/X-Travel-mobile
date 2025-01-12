@@ -7,7 +7,7 @@ import 'package:xtravel/features/home/data/model/countries_dto.dart';
 class HomeNetworkDatasource extends XtravelAbstractNetworkDatasource {
   Future<Either<Failure, CountriesDto>> load() async {
     return get(
-        requestURL: '/countries',
+        requestURL: '/country/all',
         onResponse: (response) {
           final data = CountriesDto.fromJson(response.data);
           debugPrint("Data: ${data.countries}");

@@ -38,7 +38,7 @@ class ListOfCountries extends StatelessWidget {
         case HomeCountriesLoaded():
           return SliverToBoxAdapter(
             child: SizedBox(
-              height: 260,
+              height: 200,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -48,13 +48,13 @@ class ListOfCountries extends StatelessWidget {
                     child: Text(
                       'Countries',
                       style: TextStyle(
-                        fontSize: 26,
+                        fontSize: 24,
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  const Gap(16),
+                  const Gap(18),
                   Expanded(
                     child: ListView.separated(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -70,6 +70,7 @@ class ListOfCountries extends StatelessWidget {
                         },
                         itemBuilder: (context, index) {
                           return CountryCard(
+                            key: Key(state.counties[index].countryId.toString()),
                             country: state.counties[index],
                             onTap: _openCountry,
                           );
