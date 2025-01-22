@@ -7,4 +7,7 @@ class ImagesConstants {
 
   static const String icProfileOutlined = 'assets/images/svg/ic_profile_outlined.svg';
   static const String icProfileFilled = 'assets/images/svg/ic_profile_filled.svg';
+
+  static const String appleLogo = 'assets/images/svg/apple_logo.svg';
+  static const String googleLogo = 'assets/images/svg/google_logo.svg';
 }

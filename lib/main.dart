@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:xtravel/common/injection_container.dart';
+import 'package:xtravel/constants/app_theme.dart';
 import 'package:xtravel/constants/router.dart';
 import 'package:xtravel/core/providers/network_client_provider.dart';
 
@@ -18,6 +19,9 @@ class XTravelApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: AppRouter.configs,
+      theme: AppThemes.lightTheme,
+      darkTheme: AppThemes.darkTheme,
+      themeMode: ThemeMode.light,
     );
   }
 }

@@ -16,6 +16,7 @@ class _ProfileWrapperScreenState extends State<ProfileWrapperScreen> {
   @override
   Widget build(BuildContext context) => const SafeArea(
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           appBar: BasicToolbar(text: "Профиль"),
           body: LoginScreen(),
         ),

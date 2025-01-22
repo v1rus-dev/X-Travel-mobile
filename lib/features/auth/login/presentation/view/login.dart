@@ -1,8 +1,12 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:xtravel/common/widgets/app_text_field.dart';
+import 'package:xtravel/constants/colors.dart';
 import 'package:xtravel/features/auth/login/presentation/bloc/login_bloc.dart';
+import 'package:xtravel/features/auth/login/presentation/widgets/sign_in_apple.dart';
+import 'package:xtravel/features/auth/login/presentation/widgets/sign_in_google.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -24,6 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocProvider(
       create: (context) => bloc,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
@@ -54,6 +59,28 @@ class _LoginScreenState extends State<LoginScreen> {
                 color: Color(0xFFEEEEEE),
               ),
               const Gap(16),
+              SignInGoogle(
+                onTap: () {},
+              ),
+              const Gap(16),
+              SignInApple(onTap: () {}),
+              const Gap(32),
+              RichText(
+                text: const TextSpan(
+                  text: "Еще нет аккаунта? ",
+                  style: TextStyle(fontSize: 14, color: Colors.black),
+                  children: [
+                    TextSpan(
+                      text: "Зарегистрироваться",
+                      style: TextStyle(
+                        color: Color(0xFF2F86CD),
+                        decoration: TextDecoration.underline,
+                      ),
+                      
+                    )
+                  ],
+                ),
+              )
             ],
           ),
         ),
