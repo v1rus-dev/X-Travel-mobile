@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 
 class Scaffoldwrapper extends StatelessWidget {
-  const Scaffoldwrapper({super.key, required this.body});
+  const Scaffoldwrapper({super.key, this.body, this.appBar});
 
-  final Widget body;
+  final Widget? body;
+  final PreferredSizeWidget? appBar;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(child: body),
+    return SafeArea(
+      child: Scaffold(
+        appBar: appBar,
+        body: body,
+      ),
     );
   }
 }

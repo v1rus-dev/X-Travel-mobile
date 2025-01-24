@@ -8,23 +8,33 @@ class CountryInfoTopPart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverToBoxAdapter(
-        child: Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-      child: Material(
-        child: SizedBox(
+    return Stack(
+      children: [
+        SizedBox(
           height: 400,
+          width: double.infinity,
           child: Hero(
               tag: mainImageUrl,
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(40)),
-                child: CachedNetworkImage(
-                  imageUrl: mainImageUrl,
+              child: CachedNetworkImage(
+                imageUrl: mainImageUrl,
+                fit: BoxFit.cover,
+                placeholder: (context, url) => Container(
+                  width: double.infinity,
+                  height: 400,
+                  color: Colors.grey.withValues(alpha: 0.3),
+                ),
+                imageBuilder: (context, imageProvider) => Image(
+                  image: imageProvider,
                   fit: BoxFit.cover,
                 ),
               )),
         ),
-      ),
-    ));
+        Row(
+          children: [
+            
+          ],
+        )
+      ],
+    );
   }
 }

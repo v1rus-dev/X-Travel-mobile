@@ -6,15 +6,14 @@ import 'package:xtravel/features/countryInfo/data/repositories_impl/country_info
 import 'package:xtravel/features/countryInfo/domain/repositories/country_info_repository.dart';
 import 'package:xtravel/features/home/data/repository_impl/home_repository_impl.dart';
 import 'package:xtravel/features/home/domain/repository/home_repository.dart';
+import 'package:xtravel/features/home/presentation/bloc/home_bloc.dart';
 
 final locator = GetIt.instance;
 
 final Talker talker = locator();
 
 initLocator() {
-  locator.registerSingleton(Talker(
-    settings: TalkerSettings(enabled: true)
-  ));
+  locator.registerSingleton(Talker(settings: TalkerSettings(enabled: true)));
   locator.registerLazySingleton<Dio>(() => NetworkClientProvider.client);
 
   initHome();
@@ -23,8 +22,10 @@ initLocator() {
 
 initHome() {
   locator.registerLazySingleton<HomeRepository>(() => HomeRepositoryImpl());
+  locator.registerSingleton<HomeBloc>(HomeBloc(homeRepository: locator())..add(HomeEventInitial()));
 }
 
 initCountryInfo() {
-  locator.registerLazySingleton<CountryInfoRepository>(() => CountryInfoRepositoryImpl());
+  locator.registerLazySingleton<CountryInfoRepository>(
+      () => CountryInfoRepositoryImpl());
 }

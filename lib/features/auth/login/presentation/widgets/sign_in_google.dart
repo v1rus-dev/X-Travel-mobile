@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:xtravel/constants/images.dart';
+import 'package:xtravel/constants/resources/images.dart';
 
 class SignInGoogle extends StatelessWidget {
   SignInGoogle({super.key, this.onTap});

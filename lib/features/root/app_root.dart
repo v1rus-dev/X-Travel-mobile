@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:xtravel/constants/constants.dart';
+import 'package:xtravel/constants/resources/bottom_app_bar_icons.dart';
 
 class AppRoot extends StatefulWidget {
   const AppRoot({super.key, required this.navigationshell});

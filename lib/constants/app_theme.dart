@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:xtravel/constants/app_text_theme.dart';
 
 class AppThemes {
   static final ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     scaffoldBackgroundColor: Colors.white,
     primarySwatch: Colors.blue,
-    textTheme: const TextTheme(
-      bodyLarge: TextStyle(color: Colors.black),
-      bodyMedium: TextStyle(color: Colors.black87),
-    ),
+    cardColor: Colors.white,
+    useMaterial3: false,
+    textTheme: lightTextTheme,
   );
 
   static final ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     scaffoldBackgroundColor: Colors.black,
     primarySwatch: Colors.blue,
-    textTheme: const TextTheme(
-      bodyLarge: TextStyle(color: Colors.white),
-      bodyMedium: TextStyle(color: Colors.white70),
-    ),
+    useMaterial3: false,
+    textTheme: darkTextTheme,
   );
 }

@@ -14,7 +14,7 @@ class AppRouter {
 
   static final configs = GoRouter(
       navigatorKey: _navigatorKey,
-      initialLocation: HomeScreen.path,
+      initialLocation: HomeScreenPage.path,
       routes: <RouteBase>[
         StatefulShellRoute.indexedStack(
             key: _shellNavigatorKey,
@@ -24,9 +24,9 @@ class AppRouter {
               StatefulShellBranch(
                 routes: [
                   GoRoute(
-                    path: HomeScreen.path,
-                    name: HomeScreen.name,
-                    builder: (context, state) => const HomeScreen(),
+                    path: HomeScreenPage.path,
+                    name: HomeScreenPage.name,
+                    builder: (context, state) => const HomeScreenPage(),
                   ),
                 ],
               ),
@@ -55,9 +55,9 @@ class AppRouter {
           builder: (context, state) => const RegistrationScreen(),
         ),
         GoRoute(
-          path: CountryInfoScreenBuilder.path,
-          name: CountryInfoScreenBuilder.name,
-          builder: (context, state) => CountryInfoScreenBuilder(
+          path: CountryInfoScreenPage.path,
+          name: CountryInfoScreenPage.name,
+          builder: (context, state) => CountryInfoScreenPage(
             countryId: state.pathParameters['countryId']!,
             mainImageUrl: state.pathParameters['mainImageUrl']!,
           ),

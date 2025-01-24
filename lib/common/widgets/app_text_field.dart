@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:xtravel/constants/colors.dart';
+import 'package:xtravel/constants/resources/app_colors.dart';
 
 class AppTextField extends StatelessWidget {
   AppTextField(
