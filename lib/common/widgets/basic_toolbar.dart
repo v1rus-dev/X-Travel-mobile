@@ -26,16 +26,19 @@ class BasicToolbar extends StatelessWidget implements PreferredSizeWidget {
     }
   }
 
-  Widget buildMain(BuildContext context) => SizedBox(
-        height: _height,
-        child: Row(
-          children: [
-            const Gap(20),
-            Text(
-              text,
-              style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-            )
-          ],
+  Widget buildMain(BuildContext context) => SafeArea(
+        child: SizedBox(
+          height: _height,
+          child: Row(
+            children: [
+              const Gap(20),
+              Text(
+                text,
+                style:
+                    const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+              )
+            ],
+          ),
         ),
       );
 
@@ -44,24 +47,26 @@ class BasicToolbar extends StatelessWidget implements PreferredSizeWidget {
 
     return SafeArea(
       child: SizedBox(
-          height: _height,
-          child: Row(
-            children: [
-              const Gap(24),
-              Material(
-                color: Colors.white,
-                child: InkWell(
-                  onTap: () {
-                    onBack(context);
-                  },
-                  child: SvgPicture.asset(ImagesConstants.backIcon),
-                ),
-              ),
-              const Gap(20),
-              Text(text, style: theme.textTheme.titleLarge,),
-            ],
-          ),
+        height: _height,
+        child: Row(
+          children: [
+            const Gap(8),
+            IconButton(
+              onPressed: () {
+                onBack(context);
+              },
+              iconSize: 24,
+              splashRadius: 24,
+              icon: SvgPicture.asset(ImagesConstants.backIcon),
+            ),
+            const Gap(20),
+            Text(
+              text,
+              style: theme.textTheme.titleLarge,
+            ),
+          ],
         ),
+      ),
     );
   }
 

@@ -28,47 +28,73 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  bool isSelectedConfirmation = false;
 
-  onRegister() {
-
-  }
+  onRegister() {}
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return BlocBuilder<RegistrationBloc, RegistrationState>(
         builder: (context, state) => Scaffoldwrapper(
               appBar: BasicToolbar(
                 text: "Регистрация",
                 withBackButton: true,
               ),
-              body: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  children: [
-                    const Gap(36),
-                    AppTextField(
-                      label: "Имя",
-                    ),
-                    const Gap(20),
-                    AppTextField(
-                      label: "Логин",
-                    ),
-                    const Gap(20),
-                    AppTextField(
-                      label: "Почта",
-                    ),
-                    const Gap(20),
-                    AppTextField(
-                      label: "Пароль",
-                    ),
-                    const Gap(20),
-                    AppTextField(
-                      label: "Повторите пароль",
-                    ),
-                    const Spacer(),
-                    AppButtonSuccess(text: "Зарегистрироваться", onTap: onRegister,),
-                    const Gap(40)
-                  ],
+              resizeToAvoidBottomInset: true,
+              body: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Gap(36),
+                      AppTextField(
+                        label: "Имя",
+                      ),
+                      const Gap(20),
+                      AppTextField(
+                        label: "Логин",
+                      ),
+                      const Gap(20),
+                      AppTextField(
+                        label: "Почта",
+                      ),
+                      const Gap(20),
+                      AppTextField(
+                        label: "Пароль",
+                      ),
+                      const Gap(20),
+                      AppTextField(
+                        label: "Повторите пароль",
+                      ),
+                      const Gap(10),
+                      Row(
+                        children: [
+                          Text(
+                            "Cогласие на обработку данных",
+                            style: theme.textTheme.bodyLarge,
+                          ),
+                          const Spacer(),
+                          Switch.adaptive(
+                              value: isSelectedConfirmation,
+                              onChanged: (isSelected) {
+                                setState(() {
+                                  isSelectedConfirmation = isSelected;
+                                });
+                              }),
+                        ],
+                      ),
+                      const Gap(20),
+                      AppButtonSuccess(
+                        text: "Зарегистрироваться",
+                        isEnabled: isSelectedConfirmation,
+                        onTap: onRegister,
+                      ),
+                      const Gap(40)
+                    ],
+                  ),
                 ),
               ),
             ));
