@@ -14,7 +14,7 @@ class ProfileWrapperScreen extends StatefulWidget {
 
 class _ProfileWrapperScreenState extends State<ProfileWrapperScreen> {
   @override
-  Widget build(BuildContext context) => const SafeArea(
+  Widget build(BuildContext context) => SafeArea(
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: BasicToolbar(text: "Профиль"),

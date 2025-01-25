@@ -50,9 +50,9 @@ class AppRouter {
               )
             ]),
         GoRoute(
-          path: RegistrationScreen.path,
-          name: RegistrationScreen.name,
-          builder: (context, state) => const RegistrationScreen(),
+          path: RegistrationScreenPage.path,
+          name: RegistrationScreenPage.name,
+          builder: (context, state) => const RegistrationScreenPage(),
         ),
         GoRoute(
           path: CountryInfoScreenPage.path,

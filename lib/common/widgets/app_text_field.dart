@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:xtravel/constants/resources/app_colors.dart';
 
 class AppTextField extends StatelessWidget {
-  AppTextField(
-      {super.key,
-      required this.controller,
-      required this.focusNode,
-      this.enterBoldText = false,
-      this.label,
-      this.hint});
+  AppTextField({
+    super.key,
+    this.controller,
+    this.focusNode,
+    this.enterBoldText = false,
+    this.label,
+    this.hint,
+  });
 
   String? label;
   String? hint;
   bool enterBoldText;
-  final TextEditingController controller;
-  final FocusNode focusNode;
+  TextEditingController? controller;
+  FocusNode? focusNode;
 
   @override
   Widget build(BuildContext context) {

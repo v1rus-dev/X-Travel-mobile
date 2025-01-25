@@ -10,4 +10,6 @@ class ImagesConstants {
 
   static const String appleLogo = 'assets/images/svg/apple_logo.svg';
   static const String googleLogo = 'assets/images/svg/google_logo.svg';
+
+  static const String backIcon = 'assets/images/svg/ic_back.svg';
 }

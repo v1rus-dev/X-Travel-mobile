@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffoldwrapper(
-      appBar: const BasicToolbar(text: "XTravel"),
+      appBar: BasicToolbar(text: "XTravel"),
       body: BlocBuilder<HomeBloc, HomeState>(
           builder: (context, state) => switch (state) {
                 HomeInitialState() => const SizedBox.shrink(),

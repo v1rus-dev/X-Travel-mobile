@@ -8,11 +8,9 @@ class Scaffoldwrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: appBar,
-        body: body,
-      ),
+    return Scaffold(
+      appBar: appBar,
+      body: body,
     );
   }
 }

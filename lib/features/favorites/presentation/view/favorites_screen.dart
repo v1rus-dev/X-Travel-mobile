@@ -22,7 +22,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       create: (context) => bloc,
       child: SafeArea(
         child: Scaffold(
-          appBar: const BasicToolbar(text: "Избранное"),
+          appBar: BasicToolbar(text: "Избранное"),
         ),
       ),
     );
