@@ -9,6 +9,8 @@ class AppTextField extends StatelessWidget {
     this.enterBoldText = false,
     this.label,
     this.hint,
+    this.onChanged,
+    this.obscureText = false
   });
 
   String? label;
@@ -16,6 +18,8 @@ class AppTextField extends StatelessWidget {
   bool enterBoldText;
   TextEditingController? controller;
   FocusNode? focusNode;
+  Function(String)? onChanged;
+  bool obscureText;
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +55,8 @@ class AppTextField extends StatelessWidget {
       cursorColor: AppColors.mainColor,
       controller: controller,
       focusNode: focusNode,
+      onChanged: onChanged,
+      obscureText: obscureText,
     );
   }
 }

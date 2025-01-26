@@ -30,7 +30,41 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   bool isSelectedConfirmation = false;
 
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController loginController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController repeatPasswordController =
+      TextEditingController();
+
+  final FocusNode nameFocuseNode = FocusNode();
+  final FocusNode loginFocusNode = FocusNode();
+  final FocusNode emailFocusNode = FocusNode();
+  final FocusNode passwordFocusNode = FocusNode();
+  final FocusNode repeatPasswordFocusNode = FocusNode();
+
+  bool obscurePassword = true;
+  bool obscureRepeatePassword = true;
+
   onRegister() {}
+
+  RegisterButtonIsEnableState registerButtonIsEnable =
+      RegisterButtonIsEnableState();
+
+  _changeTextField(String value) {
+    updateRegisterButtonIsEnable();
+  }
+
+  updateRegisterButtonIsEnable() {
+    registerButtonIsEnable.updateState(
+      isSelectedConfirmation &&
+          nameController.text.isNotEmpty &&
+          loginController.text.isNotEmpty &&
+          emailController.text.isNotEmpty &&
+          passwordController.text.isNotEmpty &&
+          repeatPasswordController.text.isNotEmpty,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,30 +85,47 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     children: [
                       const Gap(36),
                       AppTextField(
+                        controller: nameController,
+                        focusNode: nameFocuseNode,
                         label: "Имя",
+                        onChanged: _changeTextField,
                       ),
                       const Gap(20),
                       AppTextField(
+                        controller: loginController,
+                        focusNode: loginFocusNode,
                         label: "Логин",
+                        onChanged: _changeTextField,
                       ),
                       const Gap(20),
                       AppTextField(
+                        controller: emailController,
+                        focusNode: emailFocusNode,
                         label: "Почта",
+                        onChanged: _changeTextField,
                       ),
                       const Gap(20),
                       AppTextField(
+                        controller: passwordController,
+                        focusNode: passwordFocusNode,
                         label: "Пароль",
+                        obscureText: obscurePassword,
+                        onChanged: _changeTextField,
                       ),
                       const Gap(20),
                       AppTextField(
+                        controller: repeatPasswordController,
+                        focusNode: repeatPasswordFocusNode,
                         label: "Повторите пароль",
+                        obscureText: obscureRepeatePassword,
+                        onChanged: _changeTextField,
                       ),
                       const Gap(10),
                       Row(
                         children: [
                           Text(
                             "Cогласие на обработку данных",
-                            style: theme.textTheme.bodyLarge,
+                            style: theme.textTheme.bodyMedium?.copyWith(color: Colors.grey),
                           ),
                           const Spacer(),
                           Switch.adaptive(
@@ -83,14 +134,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                                 setState(() {
                                   isSelectedConfirmation = isSelected;
                                 });
+                                updateRegisterButtonIsEnable();
                               }),
                         ],
                       ),
                       const Gap(20),
-                      AppButtonSuccess(
-                        text: "Зарегистрироваться",
-                        isEnabled: isSelectedConfirmation,
-                        onTap: onRegister,
+                      ValueListenableBuilder(
+                        valueListenable: registerButtonIsEnable.isEnabled,
+                        builder: (context, state, child) => AppButtonSuccess(
+                          text: "Зарегистрироваться",
+                          isEnabled: state,
+                          onTap: onRegister,
+                        ),
                       ),
                       const Gap(40)
                     ],
@@ -98,5 +153,26 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ),
               ),
             ));
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    loginController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    repeatPasswordController.dispose();
+    super.dispose();
+  }
+}
+
+class RegisterButtonIsEnableState extends ChangeNotifier {
+  ValueNotifier<bool> isEnabled = ValueNotifier(false);
+
+  updateState(bool newState) {
+    if (isEnabled.value != newState) {
+      isEnabled.value = newState;
+      notifyListeners();
+    }
   }
 }
